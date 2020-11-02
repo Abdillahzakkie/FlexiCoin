@@ -1,0 +1,24 @@
+{
+  "name": "Learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "truffle test",
+    "compile": "truffle compile --all",
+    "migrate-dev": "truffle migrate --reset --network development",
+    "deploy": "truffle migrate --network rinkeby"
+  },
+  "keywords": [],
+  "author": "Abdullah Zakariyya",
+  "license": "MIT",
+  "dependencies": {
+    "truffle": "^5.1.51"
+  },
+  "devDependencies": {
+    "@openzeppelin/contracts": "^3.2.0",
+    "@openzeppelin/test-helpers": "^0.5.9",
+    "@truffle/hdwallet-provider": "^1.1.1",
+    "chai": "^4.2.0"
+  }
+}
