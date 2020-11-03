@@ -109,10 +109,9 @@ abstract contract ERC20 is IERC20 {
         emit Transfer(account, address(0), value);
     }
 
-    function _transferFrom(address sender, address recipient, uint256 amount) internal returns (bool) {
+    function _transferFrom(address sender, address recipient, uint256 amount) internal {
         _transfer(sender, recipient, amount);
         _approve(sender, msg.sender, _allowances[sender][msg.sender].sub(amount));
-        return true;
     }
 
     function _approve(address owner, address spender, uint256 value) internal {
