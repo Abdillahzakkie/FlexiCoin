@@ -38,32 +38,6 @@ library SafeMath {
 
 }
 
-contract Owned {
-    address public owner;
-    address public newOwner;
-
-    event OwnershipTransferred(address indexed from, address indexed _to);
-
-    constructor(address _owner) public {
-        owner = _owner;
-    }
-
-    modifier onlyOwner {
-        require(msg.sender == owner);
-        _;
-    }
-
-    function transferOwnership(address _newOwner) external onlyOwner {
-        newOwner = _newOwner;
-    }
-    function acceptOwnership() external {
-        require(msg.sender == newOwner);
-        emit OwnershipTransferred(owner, newOwner);
-        owner = newOwner;
-        newOwner = address(0);
-    }
-}
-
 interface IERC20 {
     function totalSupply() external view returns (uint256);
     
@@ -82,7 +56,7 @@ interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-abstract contract ERC20 is IERC20, Owned {
+abstract contract ERC20 is IERC20 {
     using SafeMath for uint256;
 
     mapping (address => uint256) internal _balances;
@@ -159,7 +133,7 @@ contract Flexi is ERC20 {
     uint8   public decimals;
     uint256 public totalBurnt;
 
-    constructor(string memory _name, string memory _symbol) public Owned(msg.sender) {
+    constructor(string memory _name, string memory _symbol) public {
         name = _name;
         symbol = _symbol;
         decimals = 18;

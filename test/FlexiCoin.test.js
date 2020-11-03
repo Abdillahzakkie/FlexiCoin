@@ -97,7 +97,6 @@ contract('Flexi coin', async ([admin, user1, user2]) => {
             await this.contract.transfer(user1, toWei(100), { from: admin })
             const previousBalance = await this.contract.balanceOf(user1);
             expect(previousBalance.toString()).to.equal(toWei(100));
-            console.log(previousBalance.toString())
         })
     })
 
@@ -136,12 +135,11 @@ contract('Flexi coin', async ([admin, user1, user2]) => {
             assert(false);
         })
 
-        it('should burn 4 - 9% from the amount of tokens to transfer', async () => {
+        it('should burn 0 - 9% from the amount of tokens to transfer', async () => {
             const balanceBeforeTransfer = (await this.contract.balanceOf(user1)).toString();
             await this.contract.transfer(user1, amount, { from: admin });
             const balanceAfterTransfer = (await this.contract.balanceOf(user1)).toString();
             expect(balanceBeforeTransfer).to.equal('0');
-            console.log('Transfer: ', web3.utils.fromWei(balanceAfterTransfer))
             assert(Number(balanceBeforeTransfer) + Number(100) <= balanceAfterTransfer);
         })
     })
